@@ -64,10 +64,12 @@ def build_model():
   
   # print(dir(tf.train.experimental))
 
-  # optimizer = tf.train.CheckpointableBase.Optimizer.RMSPropOptimizer(learning_rate=0.001)
-  optimizer = keras.optimizers.RMSprop(lr=0.001)
+  optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate=0.001)
+  # optimizer = keras.optimizers.RMSprop(lr=0.001)
+  
+  
   model.compile(loss='mse',
-                optimizer=keras.optimizers.RMSprop(lr=0.001),
+                optimizer=optimizer,
                 metrics=['mae', 'mse'])
   return model
   
